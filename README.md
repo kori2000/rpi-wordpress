@@ -5,8 +5,8 @@ Wordpress wth MySQL and Redis for Raspberry Pi
 Start with
 ```sh
 sh ./start.sh
-´´´
+```
 Stop with
 ```sh
 sh ./stop.sh
-´´´
+```
