@@ -3,10 +3,10 @@ Wordpress wth MySQL and Redis for Raspberry Pi
 
 ## Start & Stop Scripts
 Start with
-´´´sh
+```sh
 sh ./start.sh
 ´´´
 Stop with
-´´´sh
+```sh
 sh ./stop.sh
 ´´´
