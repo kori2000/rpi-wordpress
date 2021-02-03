@@ -22,15 +22,13 @@ services:
             - app-network
     pma:
         container_name: pma
-        image: phpmyadmin/phpmyadmin
+        image: phpmyadmin:latest
         environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
-            MYSQL_ROOT_PASSWORD: secret
+            PMA_ARBITRARY: 1
         ports:
-            - 8081:5506
+            - 8080:5506
         links:
-            - mysql:mysql
+            - mysql:db
         networks:
             - app-network  
 

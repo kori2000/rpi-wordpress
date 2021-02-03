@@ -12,7 +12,7 @@ LOCAL_IP=$(hostname -I | awk '{print $1;}')
 printf  "${PURPLE} \n ### Pulling Images...${NC}\n\n"
 docker pull hypriot/rpi-mysql:latest
 docker pull redis:latest
-docker pull phpmyadmin/phpmyadmin:latest
+docker pull phpmyadmin:latest
 docker pull wordpress:latest
 
 printf "${PURPLE} \n  ### Starting Container...${NC}\n\n"
