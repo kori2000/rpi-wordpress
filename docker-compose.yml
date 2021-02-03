@@ -24,8 +24,8 @@ services:
         container_name: pma
         image: phpmyadmin/phpmyadmin
         environment:
-            PMA_HOST: db
-            PMA_PORT: 5506
+            PMA_HOST: mysql
+            PMA_PORT: 3306
         env_file:
             - env/mysql.env
         ports:
