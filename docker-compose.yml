@@ -25,11 +25,11 @@ services:
         image: phpmyadmin/phpmyadmin
         environment:
             PMA_HOST: db
-            PMA_PORT: 3306
+            PMA_PORT: 5506
         env_file:
             - env/mysql.env
         ports:
-            - 8081:5600
+            - 5506:5506
         links:
             - mysql:mysql
         networks:
