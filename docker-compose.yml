@@ -30,7 +30,7 @@ services:
         ports:
             - 8081:5600
         links:
-            - db:db
+            - mysql:mysql
         networks:
             - app-network  
 
