@@ -18,6 +18,19 @@ services:
         restart: always
         networks:
             - app-network
+    pma:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+        env_file:
+            - env/mysql.env
+        ports:
+            - 8081:5600
+        links:
+            - db:db
+        networks:
+            - app-network  
 
     wordpress:
         depends_on:
@@ -41,5 +54,5 @@ volumes:
     nginx: null
 
 networks:
-  app-network:
-    driver: bridge
+    app-network:
+        driver: bridge
