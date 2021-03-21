@@ -1,59 +1,27 @@
 version: '3'
 services:
 
-    mysql:
-        container_name: mysql
-        restart: always
-        image: hypriot/rpi-mysql:latest
-        volumes:
-            - '/home/pi/blog/data:/var/lib/mysql'
-        env_file:
-            - env/mysql.env
-        ports:
-            - 3306:3306
-        networks:
-            - app-network
-
-    redis:    
-        container_name: redis
-        image: redis:latest
-        restart: always
-        networks:
-            - app-network
-
-    phpmyadmin:
-        container_name: phpmyadmin
-        image: phpmyadmin:latest
-        restart: always
-        env_file:
-            - env/mysql.env
-        ports:
-            - 5560:80
-        networks:
-            - app-network
-
     wordpress:
-        depends_on:
-            - mysql
-            - redis
         container_name: wordpress
-        image: wordpress:latest
-        restart: always        
-        volumes:
-            - '/homdocker oe/pi/blog/html:/var/www/html'
+        image: wordpress:5.1.1-fpm-alpine
+        restart: always
         env_file:
             - env/blog.env
+        volumes:
+            - ./wordpress:/var/www/html
+
+    nginx:
+        depends_on:
+            - wordpress
+        container_name: nginx
+        image: nginx:stable-alpine
+        restart: always
         ports:
-            - 80:80
-            - 443:443
-        networks:
-            - app-network            
+            - "80:80"
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - ./wordpress:/var/www/html
 
 volumes:
-    mysql: null
-    wordpress: null
-    nginx: null
-
-networks:
-    app-network:
-        driver: bridge
+    wordpress:
+    nginx:
