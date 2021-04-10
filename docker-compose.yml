@@ -3,18 +3,19 @@ services:
 
     wordpress:
         container_name: wordpress
-        image: wordpress:php8.0-fpm-alpine
+        build: ./wordpress-docker
         restart: always
         env_file:
             - env/blog.env
         volumes:
             - ./wordpress:/var/www/html
+            - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 
     nginx:
         depends_on:
             - wordpress
         container_name: nginx
-        image: nginx:stable-alpine
+        build: ./nginx-docker
         restart: always
         ports:
             - "80:80"
