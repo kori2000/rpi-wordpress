@@ -9,7 +9,6 @@ services:
             - env/blog.env
         volumes:
             - ./wordpress:/var/www/html
-            - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 
     nginx:
         depends_on:
@@ -20,7 +19,6 @@ services:
         ports:
             - "80:80"
         volumes:
-            - ./nginx:/etc/nginx/conf.d
             - ./wordpress:/var/www/html
 
 volumes:
